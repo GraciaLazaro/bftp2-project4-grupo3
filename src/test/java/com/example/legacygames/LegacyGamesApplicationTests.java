@@ -1,5 +1,6 @@
 package com.example.legacygames;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,6 +18,13 @@ class LegacyGamesApplicationTests {
 
     @Autowired
     MockMvc mockMvc;
+
+    @BeforeEach
+    void setUp() {
+        gameRepository.deleteAll();
+    }
+
+
     @Test
 
     void CargaLaHome() throws Exception {
@@ -24,4 +32,17 @@ class LegacyGamesApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"));
     }
+
+
+    @Test
+    void returnsTheExistingGames() throws Exception {
+
+        Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
+
+        mockMvc.perform(get("/games"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("games/all"))
+                .andExpect(model().attribute("games", hasItem(game)));
+    }
+
 }
