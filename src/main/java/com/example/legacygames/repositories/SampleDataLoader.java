@@ -12,7 +12,7 @@ public class SampleDataLoader {
 
     @Autowired
     public SampleDataLoader (GameRepository gameRepository){
-    this GameRepository = gameRepository;
+    this.gameRepository = gameRepository;
     }
 
     @PostConstruct
