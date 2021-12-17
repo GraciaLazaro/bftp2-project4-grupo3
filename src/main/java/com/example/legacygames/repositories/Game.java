@@ -30,6 +30,16 @@ public class Game implements Serializable {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", pegi=" + pegi +
+                ", price=" + price + "€" +
+                '}';
+    }
 
     public Long getId() {
         return id;
