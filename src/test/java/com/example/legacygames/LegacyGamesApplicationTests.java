@@ -20,11 +20,11 @@ class LegacyGamesApplicationTests {
     @Autowired
     MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp() {
-        gameRepository.deleteAll();
-    }
-
+  /* @BeforeEach
+   void setUp() {
+      gameRepository.deleteAll();
+   }
+}
 
     @Test
 
