@@ -1,5 +1,6 @@
 package com.example.legacygames;
 
+import com.example.legacygames.repositories.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,11 @@ class LegacyGamesApplicationTests {
     @Autowired
     MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp() {
-        gameRepository.deleteAll();
-    }
-
+  /* @BeforeEach
+   void setUp() {
+      gameRepository.deleteAll();
+   }
+}
 
     @Test
 
