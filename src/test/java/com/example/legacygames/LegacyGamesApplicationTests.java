@@ -20,11 +20,12 @@ class LegacyGamesApplicationTests {
     @Autowired
     MockMvc mockMvc;
 
-  /* @BeforeEach
+   @BeforeEach
    void setUp() {
       gameRepository.deleteAll();
    }
-}
+
+
 
     @Test
 
@@ -35,7 +36,7 @@ class LegacyGamesApplicationTests {
     }
 
 
-    /*@Test
+    @Test
     void returnsTheExistingGames() throws Exception {
 
         Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
@@ -44,6 +45,9 @@ class LegacyGamesApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("games/all"))
                 .andExpect(model().attribute("games", hasItem(game)));
-    }*/
+    }
+
+
+
 
 }

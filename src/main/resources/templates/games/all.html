@@ -9,16 +9,17 @@
 <header th:replace="fragments/header"></header>
 <section class="container">
     <h1 th:text="${title}"></h1>
+    <a href="games/new.html">+ Añadir juego</a>
     <div class="table-responsive">
 
     <table class="table table-dark table-striped">
     <thead>
     <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Pegi</th>
-        <th>Price</th>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Category</th>
+        <th scope="col">Pegi</th>
+        <th scope="col">Price</th>
 
     </tr>
     </thead>
