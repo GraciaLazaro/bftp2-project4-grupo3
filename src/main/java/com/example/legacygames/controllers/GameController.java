@@ -1,5 +1,10 @@
 package com.example.legacygames.controllers;
 
+
+
+
+
+
 import com.example.legacygames.repositories.Game;
 import com.example.legacygames.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +37,7 @@ public class GameController {
         Game game = new Game();
         model.addAttribute("game", game);
         model.addAttribute("title", "Añadir juego");
-        return "games/edit";
+        return "games/new";
     }
 
     @PostMapping("/games/new")
