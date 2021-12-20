@@ -1,11 +1,18 @@
 package com.example.legacygames.controllers;
 
+
+
+
+
+
 import com.example.legacygames.repositories.Game;
 import com.example.legacygames.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -24,6 +31,19 @@ public class GameController {
         model.addAttribute("title", "Game list");
         model.addAttribute("games", games);
         return "games/all";
+    }
+    @GetMapping("/games/new")
+    String getForm(Model model){
+        Game game = new Game();
+        model.addAttribute("game", game);
+        model.addAttribute("title", "Añadir juego");
+        return "games/new";
+    }
+
+    @PostMapping("/games/new")
+    String addGame(@ModelAttribute Game game) {
+        gameRepository.save(game);
+        return "redirect:/games";
     }
 }
 
