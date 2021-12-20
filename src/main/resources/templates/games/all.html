@@ -10,7 +10,8 @@
 <header th:replace="fragments/header"></header>
 <section class="container">
     <h1 th:text="${title}"></h1>
-    <a href="games/new.html">+ Añadir juego</a>
+    <p th:text="${games}"></p>
+    <a href="games/new">+ Añadir juego</a>
     <div class="table-responsive">
 
     <table class="table table-dark table-striped">
