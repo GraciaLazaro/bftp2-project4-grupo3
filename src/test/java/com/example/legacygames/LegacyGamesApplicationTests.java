@@ -65,7 +65,6 @@ class LegacyGamesApplicationTests {
 
     }*/
 
-    }
     @Test
     void allowsToCreateANewGame() throws Exception {
         mockMvc.perform(post("/Games/new")
