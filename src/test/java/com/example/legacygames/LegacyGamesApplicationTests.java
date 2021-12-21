@@ -67,7 +67,7 @@ class LegacyGamesApplicationTests {
 
     @Test
     void allowsToCreateANewGame() throws Exception {
-        mockMvc.perform(post("/Games/new")
+        mockMvc.perform(post("/games/new")
                         .param("title", "Wii Sports")
                         .param("category", "Sports")
                         .param("pegi", "7")
@@ -77,8 +77,8 @@ class LegacyGamesApplicationTests {
                 .andExpect(redirectedUrl("/games"))
         ;
 
-        List<Game> existingBooks = (List<Game>) gameRepository.findAll();
-        assertThat(existingBooks, contains(allOf(
+        List<Game> existingGames = (List<Game>) gameRepository.findAll();
+        assertThat(existingGames, contains(allOf(
                 hasProperty("title", equalTo("Wii Sports")),
                 hasProperty("pegi", equalTo("7")),
                 hasProperty("category", equalTo("Sports")),
