@@ -44,7 +44,6 @@ public class GameController {
         model.addAttribute("pegi", "Game list");
         model.addAttribute("price", "Game list");
 
-
         return "games/edit";
     }
 
