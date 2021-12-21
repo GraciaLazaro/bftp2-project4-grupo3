@@ -22,16 +22,11 @@ import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+
 class LegacyGamesApplicationTests {
 
     @Autowired
     MockMvc mockMvc;
-
-
-    /*@BeforeEach
-    void setUp() {
-        gameRepository.deleteAll();
-    }*/
 
     @Autowired
     GameRepository gameRepository;
@@ -42,8 +37,6 @@ class LegacyGamesApplicationTests {
    }
 
 
-
-
     @Test
 
     void CargaLaHome() throws Exception {
@@ -51,19 +44,6 @@ class LegacyGamesApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"));
     }
-
-
-    /*@Test
-    void returnsTheExistingGames() throws Exception {
-
-        Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
-
-        mockMvc.perform(get("/games"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("games/all"))
-                .andExpect(model().attribute("games", hasItem(game)));
-
-    }*/
 
     @Test
     void allowsToCreateANewGame() throws Exception {
@@ -80,8 +60,8 @@ class LegacyGamesApplicationTests {
         List<Game> existingGames = (List<Game>) gameRepository.findAll();
         assertThat(existingGames, contains(allOf(
                 hasProperty("title", equalTo("Wii Sports")),
-                hasProperty("pegi", equalTo("7")),
                 hasProperty("category", equalTo("Sports")),
+                hasProperty("pegi", equalTo("7")),
                 hasProperty("price", equalTo("19.99"))
         )));
     }

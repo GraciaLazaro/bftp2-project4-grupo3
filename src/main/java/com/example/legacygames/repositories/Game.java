@@ -59,6 +59,8 @@ public class Game implements Serializable {
         this.title = title;
     }
 
+
+
     public String getCategory() {
         return category;
     }
@@ -67,9 +69,7 @@ public class Game implements Serializable {
         this.category = category;
     }
 
-    public int getPegi() {
-        return pegi;
-    }
+    public int getPegi() { return pegi;}
 
 
     public double getPrice() {
@@ -79,6 +79,8 @@ public class Game implements Serializable {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public void setPegi(int pegi) { this.pegi = pegi;}
 
     @Override
     public boolean equals(Object o) {
