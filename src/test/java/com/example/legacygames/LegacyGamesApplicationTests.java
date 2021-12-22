@@ -45,6 +45,7 @@ class LegacyGamesApplicationTests {
                 .andExpect(view().name("home"));
     }
 
+
     @Test
     void allowsToCreateANewGame() throws Exception {
         mockMvc.perform(post("/games/new")
