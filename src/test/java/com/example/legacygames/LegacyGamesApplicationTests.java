@@ -12,7 +12,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.awt.print.Book;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -61,11 +63,21 @@ class LegacyGamesApplicationTests {
         assertThat(existingGames, contains(allOf(
                 hasProperty("title", equalTo("Wii Sports")),
                 hasProperty("category", equalTo("Sports")),
-                hasProperty("pegi", equalTo("7")),
-                hasProperty("price", equalTo("19.99"))
+                hasProperty("pegi", equalTo(7)),
+                hasProperty("price", equalTo(19.99))
         )));
     }
 
+
+    @Test
+    void allowsToDeleteAGame() throws Exception {
+        Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
+        mockMvc.perform(get("/game/delete/" + game.getId()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/games"));
+
+        assertThat(gameRepository.findById(game.getId()), equalTo(Optional.empty()));
+    }
 
 
 
