@@ -61,6 +61,8 @@ public class Game implements Serializable {
 
 
 
+
+
     public String getCategory() {
         return category;
     }
@@ -70,6 +72,7 @@ public class Game implements Serializable {
     }
 
     public int getPegi() { return pegi;}
+    public void setPegi(int pegi) { this.pegi = pegi;}
 
 
     public double getPrice() {
@@ -80,7 +83,7 @@ public class Game implements Serializable {
         this.price = price;
     }
 
-    public void setPegi(int pegi) { this.pegi = pegi;}
+
 
     @Override
     public boolean equals(Object o) {
