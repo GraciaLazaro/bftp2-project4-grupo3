@@ -80,4 +80,17 @@ class LegacyGamesApplicationTests {
 
         assertThat(gameRepository.findById(game.getId()), equalTo(Optional.empty()));
     }
+
+
+
+    @Test
+    void allowsToEditAnyGame () throws Exception {
+        Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
+        mockMvc.perform(get("/games/edit/" + game.getId()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("games/edit"))
+                .andExpect(model().attribute("game", game))
+                .andExpect(model().attribute("title", "Edit game"));
+    }
+
 }
