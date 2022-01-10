@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.awt.print.Book;
 import java.util.List;
@@ -72,12 +73,14 @@ class LegacyGamesApplicationTests {
     @Test
     void allowsToDeleteAGame() throws Exception {
         Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
-        mockMvc.perform(get("/game/delete/" + game.getId()))
+        mockMvc.perform(get("/games/delete/" + game.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/games"));
 
         assertThat(gameRepository.findById(game.getId()), equalTo(Optional.empty()));
     }
+
+
 
 
 
