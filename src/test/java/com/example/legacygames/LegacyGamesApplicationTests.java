@@ -74,11 +74,8 @@ class LegacyGamesApplicationTests {
         Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
         mockMvc.perform(get("/game/delete/" + game.getId()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/games"));
+                .andExpect(redirectedUrl("/game"));
 
         assertThat(gameRepository.findById(game.getId()), equalTo(Optional.empty()));
     }
-
-
-
 }
