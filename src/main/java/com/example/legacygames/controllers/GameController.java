@@ -10,10 +10,7 @@ import com.example.legacygames.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,7 +41,7 @@ public class GameController {
         model.addAttribute("pegi", "Game list");
         model.addAttribute("price", "Game list");
 
-        return "games/edit";
+        return "new";
     }
 
     @PostMapping("/games/new")
@@ -52,5 +49,12 @@ public class GameController {
         gameRepository.save(game);
         return "redirect:/games";
     }
+
+   @GetMapping("/games/delete/{id}")
+    String remove(@PathVariable Long id){
+        gameRepository.deleteById(id);
+        return "redirect:/games";
+   }
+
 }
 
