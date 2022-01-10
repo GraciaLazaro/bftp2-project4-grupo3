@@ -79,7 +79,4 @@ class LegacyGamesApplicationTests {
 
         assertThat(gameRepository.findById(game.getId()), equalTo(Optional.empty()));
     }
-
-
-
 }
