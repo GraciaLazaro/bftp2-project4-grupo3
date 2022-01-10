@@ -49,11 +49,19 @@ public class GameController {
         gameRepository.save(game);
         return "redirect:/games";
     }
+
     @GetMapping ("games/{id}")
     String deleteGame (@PathVariable Long id){
         gameRepository.deleteById(id);
         return "redirect:/games";
     }
+
+
+   @GetMapping("/games/delete/{id}")
+    String remove(@PathVariable Long id){
+        gameRepository.deleteById(id);
+        return "redirect:/games";
+   }
 }
 
 
