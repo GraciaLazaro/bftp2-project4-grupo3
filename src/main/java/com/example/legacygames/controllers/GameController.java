@@ -37,9 +37,6 @@ public class GameController {
 
         model.addAttribute("game", game);
         model.addAttribute("title", "Game list");
-        model.addAttribute("category", "Game list");
-        model.addAttribute("pegi", "Game list");
-        model.addAttribute("price", "Game list");
 
         return "games/edit";
     }
@@ -50,18 +47,20 @@ public class GameController {
         return "redirect:/games";
     }
 
-    @GetMapping ("games/{id}")
-    String deleteGame (@PathVariable Long id){
-        gameRepository.deleteById(id);
-        return "redirect:/games";
-    }
-
 
    @GetMapping("/games/delete/{id}")
     String remove(@PathVariable Long id){
         gameRepository.deleteById(id);
         return "redirect:/games";
    }
+
+    @GetMapping("/games/edit/{id}")
+    String editBook(Model model, @PathVariable Long id){
+        Game game = gameRepository.findById(id).get();
+        model.addAttribute("game", game);
+        model.addAttribute("title", "Edit game");
+        return "games/edit";
+    }
 }
 
 
