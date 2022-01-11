@@ -6,7 +6,9 @@
 <section class="container">
     <h1 th:text="${title}"></h1>
     <form th:action="@{/games/new}" th:object="${game}" method="post">
+
         <div class="form-group">
+            <input type="hidden" th:field="*{id}">
             <label class="col-md2" for="title">Title</label>
             <input th:field="*{title}" type="text" class="col-md6 form-control form-control-sm" id="title"
                    placeholder="Enter title">
