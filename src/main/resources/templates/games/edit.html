@@ -34,6 +34,11 @@
         </div>
     </form>
 </section>
+<div class="form-group">
+    <label class="col-md2" for="coverImage">CoverImage</label>
+    <input th:field="*{coverImage}" type="url" class="col-md6 form-control form-control-sm" id="coverImage"
+           placeholder="Add an image url">
+</div>
 <footer class="navbar navbar-fixed-bottom" th:replace="fragments/footer"></footer>
 </body>
 </html>

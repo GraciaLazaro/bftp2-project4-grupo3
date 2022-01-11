@@ -14,44 +14,61 @@
 <section class="container">
     <!-- <a href="/games/new">+ Añadir</a>
     <a href="/games/delete/{id}">+ Eliminar juego</a>-->
-    <div class="table-responsive">
-
-    <table class="table table-dark table-striped">
-    <thead>
-    <tr>
-
-        <th scope="col">Id</th>
-        <th scope="col">Title</th>
-        <th scope="col">Category</th>
-        <th scope="col">Pegi</th>
-        <th scope="col">Price</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-        <th scope="col"><a class="btn btn-dark btn-sm"  href="/games/new"+${game.id}>+</a></th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="game: ${games}">
-        <th scope="row" th:text="${game.id}"></th>
-        <td th:text="${game.title}"></td>
-        <td th:text="${game.category}"></td>
-        <td th:text="${game.pegi}"></td>
-        <td th:text="${game.price}+'€'" ></td>
-        <td><a class="btn btn-success btn-sm" th:href="'/games/edit/'+${game.id}">Edit</a></td>
-        <td><a class="btn btn-danger btn-sm" th:href="'/games/delete/'+${game.id}">Delete</a></td>
-        <td ></td>
-
-    </tr>
-    </tbody>
-</table>
+    <section class="container">
+        <div class="book-list">
+            <div class="book" th:each="book: ${books}">
+                <div class="img-container">
+                    <img th:src="${book.coverImage}">
+                </div>
+                <div class="info">
+                    <div th:text="${book.title}"></div>
+                    <div th:text="${book.author}"></div>
+                    <div th:text="${book.category}"></div>
+                </div>
+                <div class="buttons">
+                    <a class="btn btn-success btn-sm" th:href="'/books/'+${book.id} + '/edit'">Edit</a>
+                    <a class="btn btn-danger btn-sm" th:href="'/books/'+${book.id} + '/delete'">Delete</a>
+                </div>
+            </div>
         </div>
     </section>
+    <!--  <div class="table-responsive">
+         <table class="table table-dark table-striped">
+          <thead>
+          <tr>
 
-<footer class ="fixed-bottom">
-    <p>© Bcn Fem Tech 2021</p>
+              <th scope="col">Id</th>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Pegi</th>
+              <th scope="col">Price</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+              <th scope="col"><a class="btn btn-dark btn-sm"  href="/games/new"+${game.id}>+</a></th>
 
-</footer>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="game: ${games}">
+              <th scope="row" th:text="${game.id}"></th>
+              <td th:text="${game.title}"></td>
+              <td th:text="${game.category}"></td>
+              <td th:text="${game.pegi}"></td>
+              <td th:text="${game.price}+'€'" ></td>
+              <td><a class="btn btn-success btn-sm" th:href="'/games/edit/'+${game.id}">Edit</a></td>
+              <td><a class="btn btn-danger btn-sm" th:href="'/games/delete/'+${game.id}">Delete</a></td>
+              <td ></td>
 
-</body>
-</html>
+          </tr>
+          </tbody>
+      </table>
+              </div>
+          </section>-->
+
+     <footer class ="fixed-bottom">
+         <p>© Bcn Fem Tech 2021</p>
+
+     </footer>
+
+     </body>
+     </html>

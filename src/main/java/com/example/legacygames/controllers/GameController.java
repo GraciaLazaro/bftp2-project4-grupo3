@@ -20,7 +20,7 @@ public class GameController {
     }
 
     @GetMapping("/games")
-    String listGames (Model model){
+    String listGames (Model model,){
         List<Game> games =  gameRepository.findAll();
         model.addAttribute("title", "Game list");
         model.addAttribute("games", games);
