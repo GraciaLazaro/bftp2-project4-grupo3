@@ -1,16 +1,12 @@
 package com.example.legacygames.controllers;
 
-
-
-
-
-
 import com.example.legacygames.repositories.Game;
 import com.example.legacygames.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -24,8 +20,8 @@ public class GameController {
     }
 
     @GetMapping("/games")
-    String listGames (Model model){
-        List<Game> games = (List<Game>) gameRepository.findAll();
+    String listGames (Model model,){
+        List<Game> games =  gameRepository.findAll();
         model.addAttribute("title", "Game list");
         model.addAttribute("games", games);
         return "games/all";
@@ -47,6 +43,13 @@ public class GameController {
         return "redirect:/games";
     }
 
+    @GetMapping("/games/edit/{id}")
+    String editBook(Model model, @PathVariable Long id){
+        Game game = gameRepository.findById(id).orElse(null);
+        model.addAttribute("game", game);
+        model.addAttribute("title", "Edit game");
+        return "games/edit";
+    }
 
    @GetMapping("/games/delete/{id}")
     String remove(@PathVariable Long id){
@@ -54,13 +57,7 @@ public class GameController {
         return "redirect:/games";
    }
 
-    @GetMapping("/games/edit/{id}")
-    String editBook(Model model, @PathVariable Long id){
-        Game game = gameRepository.findById(id).get();
-        model.addAttribute("game", game);
-        model.addAttribute("title", "Edit game");
-        return "games/edit";
-    }
+
 }
 
 

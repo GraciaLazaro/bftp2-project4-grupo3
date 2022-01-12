@@ -6,7 +6,9 @@
 <section class="container">
     <h1 th:text="${title}"></h1>
     <form th:action="@{/games/new}" th:object="${game}" method="post">
+
         <div class="form-group">
+            <input type="hidden" th:field="*{id}">
             <label class="col-md2" for="title">Title</label>
             <input th:field="*{title}" type="text" class="col-md6 form-control form-control-sm" id="title"
                    placeholder="Enter title">
@@ -32,6 +34,11 @@
         </div>
     </form>
 </section>
+<div class="form-group">
+    <label class="col-md2" for="coverImage">CoverImage</label>
+    <input th:field="*{coverImage}" type="url" class="col-md6 form-control form-control-sm" id="coverImage"
+           placeholder="Add an image url">
+</div>
 <footer class="navbar navbar-fixed-bottom" th:replace="fragments/footer"></footer>
 </body>
 </html>

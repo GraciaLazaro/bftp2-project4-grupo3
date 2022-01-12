@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-import static javax.persistence.GenerationType.SEQUENCE;
+/*import static javax.persistence.GenerationType.SEQUENCE;*/
 
 
 @Entity
@@ -14,20 +14,24 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Game implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String category;
+    private String coverImage;
     private int pegi;
     private double price;
+
 
 
     public Game() {
     }
 
-    public Game(String title, String category, int pegi, double price) {
+    public Game(Long id, String title, String category, String coverImage, int pegi, double price) {
+        this.id = id;
         this.title = title;
         this.category = category;
+        this.coverImage = coverImage;
         this.pegi = pegi;
         this.price = price;
     }
@@ -61,14 +65,20 @@ public class Game implements Serializable {
 
 
 
-
-
     public String getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
     }
 
     public int getPegi() { return pegi;}
@@ -90,11 +100,13 @@ public class Game implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category);
+        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category) && Objects.equals(coverImage, game.coverImage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, category, pegi, price);
+        return Objects.hash(id, title, category, pegi, price, coverImage);
     }
+
+
 }
