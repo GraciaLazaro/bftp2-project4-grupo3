@@ -5,12 +5,31 @@
 <body>
 <header th:replace="fragments/header"></header>
 
+    <section class="card">
+
+        <div class=“d-flex flex-row flex-sm-wrap align-items-center bd-highlight mb-5”>
+            <div class="card" style="width: 18rem;" th:each="game: ${games}">
+                <div class="card-body">
+
+                   <img class="card-image-top" alt="cover" th:src="${game.coverImage}">
+
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="${game.title}"></li>
+                    <li class="list-group-item" th:text="${game.category}"></li>
+                    <li class="list-group-item" th:text="${game.pegi}"></li>
+                    <li class="list-group-item" th:text="${game.price}"></li>
+                     </ul>
+                </div>
 
 
-<section class="container">
-    <!-- <a href="/games/new">+ Añadir</a>
-    <a href="/games/delete/{id}">+ Eliminar juego</a>-->
-
+                <div class="buttons">
+                    <a class="btn btn-success btn-sm" th:href="'/games/'+${game.id} + '/edit'">Edit</a>
+                    <a class="btn btn-danger btn-sm" th:href="'/games/'+${game.id} + '/delete'">Delete</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
       <div class="table-responsive">
          <table class="table table-dark table-striped">
           <thead>
@@ -42,7 +61,7 @@
           </tbody>
       </table>
               </div>
-          </section>
+          </section> -->
 
     <footer th:replace="fragments/footer"></footer>
 

@@ -20,24 +20,11 @@ public class Game implements Serializable {
     private String category;
     private int pegi;
     private double price;
+    private String coverImage;
 
 
 
     public Game() {
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, category, pegi, price);
     }
 
     public Long getId() {
@@ -64,6 +51,14 @@ public class Game implements Serializable {
         this.category = category;
     }
 
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
+
     public int getPegi() {
         return pegi;
     }
@@ -80,7 +75,7 @@ public class Game implements Serializable {
         this.price = price;
     }
 
-    public Game( String title, String category, int pegi, double price) {
+    public Game( String title, String category,int pegi, double price) {
         this.title = title;
         this.category = category;
         this.pegi = pegi;
@@ -97,7 +92,18 @@ public class Game implements Serializable {
                 ", price=" + price + "€" +
                 '}';
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title)  && Objects.equals(coverImage, game.coverImage);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, category, pegi, price, coverImage);
+    }
 
 
 
