@@ -34,7 +34,7 @@ public class GameController {
         model.addAttribute("game", game);
         model.addAttribute("title", "Game list");
 
-        return "new";
+        return "games/edit";
     }
 
     @PostMapping("/games/new")
