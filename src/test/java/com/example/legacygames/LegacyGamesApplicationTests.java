@@ -26,7 +26,7 @@ import static org.hamcrest.Matchers.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 
-class LegacyGamesApplicationTests {
+public class LegacyGamesApplicationTests {
 
     @Autowired
     MockMvc mockMvc;
@@ -73,7 +73,7 @@ class LegacyGamesApplicationTests {
 
     @Test
     void allowsToDeleteAGame() throws Exception {
-        Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
+        Game game = gameRepository.save(new Game("sims", "Sports", 7, 19.99));
         mockMvc.perform(get("/games/delete/" + game.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/games"));
@@ -85,7 +85,7 @@ class LegacyGamesApplicationTests {
 
     @Test
     void allowsToEditAnyGame () throws Exception {
-        Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
+        Game game = gameRepository.save(new Game("Wii sports", "Sports", 7, 19.99));
         mockMvc.perform(get("/games/edit/" + game.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("games/edit"))

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-/*import static javax.persistence.GenerationType.SEQUENCE;*/
+import static javax.persistence.GenerationType.SEQUENCE;
 
 
 @Entity
@@ -27,23 +27,17 @@ public class Game implements Serializable {
     }
 
 
-    public Game(Long id, String title, String category, int pegi, double price) {
-        this.id = id;
-        this.title = title;
-        this.category = category;
-        this.pegi = pegi;
-        this.price = price;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category);
     }
 
     @Override
-    public String toString() {
-        return "Game{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", category='" + category + '\'' +
-                ", pegi=" + pegi +
-                ", price=" + price + "€" +
-                '}';
+    public int hashCode() {
+        return Objects.hash(id, title, category, pegi, price);
     }
 
     public Long getId() {
@@ -62,8 +56,6 @@ public class Game implements Serializable {
         this.title = title;
     }
 
-
-
     public String getCategory() {
         return category;
     }
@@ -72,10 +64,13 @@ public class Game implements Serializable {
         this.category = category;
     }
 
+    public int getPegi() {
+        return pegi;
+    }
 
-    public int getPegi() { return pegi;}
-    public void setPegi(int pegi) { this.pegi = pegi;}
-
+    public void setPegi(int pegi) {
+        this.pegi = pegi;
+    }
 
     public double getPrice() {
         return price;
@@ -85,20 +80,28 @@ public class Game implements Serializable {
         this.price = price;
     }
 
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category);
+    public Game( String title, String category, int pegi, double price) {
+        this.title = title;
+        this.category = category;
+        this.pegi = pegi;
+        this.price = price;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, title, category, pegi, price);
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", pegi=" + pegi +
+                ", price=" + price + "€" +
+                '}';
     }
+
+
+
+
+
 
 
 }

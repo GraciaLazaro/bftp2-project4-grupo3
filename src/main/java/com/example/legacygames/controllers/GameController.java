@@ -45,7 +45,7 @@ public class GameController {
 
     @GetMapping("/games/edit/{id}")
     String editBook(Model model, @PathVariable Long id){
-        Game game = gameRepository.findById(id).orElse(null);
+        Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
         model.addAttribute("title", "Edit game");
         return "games/edit";
