@@ -1,4 +1,5 @@
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head"></head>
 
 
@@ -66,7 +67,7 @@
           </tbody>
       </table>-->
 
-         <div class="d-inline-flex" >
+         <div class="d-inline-flex">
          <div th:each="game: ${games}" class="card border-0 " style="width: 18rem;">
              <img th:src="${game.coverImage}" class="card-img-top" src="https://media.vandal.net/ivandal/1146x600/5727/200612933043_1.jpg" alt="Card image cap">
              <div class="shadow bg-dark text-white card-body "  >
@@ -75,6 +76,7 @@
                  <h6 th:text="${game.category}"></h6>
                  <h6 th:text="${game.pegi}+'+'"></h6>
                  <h6 th:text="${game.price}+'€'" ></h6>
+                 <div class="buttons" sec:authorize="isAuthenticated()">
                  <a th:href="'/games/edit/'+${game.id}" class="btn btn-success btn-sm">Edit</a>
                  <a th:href="'/games/delete/'+${game.id}" class="btn btn-danger btn-sm">Delete</a>
              </div>
