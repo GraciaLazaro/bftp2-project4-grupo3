@@ -1,5 +1,6 @@
 package com.example.legacygames.controllers;
 
+import com.example.legacygames.repositories.CategoryRepository;
 import com.example.legacygames.repositories.Game;
 import com.example.legacygames.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class GameController {
     String getForm(Model model){
 
         Game game = new Game();
-
         model.addAttribute("game", game);
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Game list");
 
         return "games/edit";

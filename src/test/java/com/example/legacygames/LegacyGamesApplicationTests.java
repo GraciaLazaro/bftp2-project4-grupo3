@@ -1,5 +1,6 @@
 package com.example.legacygames;
 
+import com.example.legacygames.repositories.CategoryRepository;
 import com.example.legacygames.repositories.Game;
 
 
@@ -92,5 +93,20 @@ public class LegacyGamesApplicationTests {
                 .andExpect(model().attribute("game", game))
                 .andExpect(model().attribute("title", "Edit game"));
     }
-
+    @Test
+    @WithMockUser
+    void returnsAFormToAddNewGames() throws Exception {
+        mockMvc.perform(get("/games/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("games/edit"))
+                .andExpect(model().attributeExists("game"))
+                .andExpect(model().attribute("title", "Create new game"))
+                .andExpect(model().attribute("categories", hasItems(
+                        hasProperty("name", is("Sports")),
+                        hasProperty("name", is("Racing")),
+                        hasProperty("name", is("Shooter")),
+                        hasProperty("name", is("Role-playing")),
+                        hasProperty("name", is("Misc"))
+                )));
+    }
 }
