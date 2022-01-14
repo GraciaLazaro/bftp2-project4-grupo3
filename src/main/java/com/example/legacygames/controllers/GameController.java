@@ -39,6 +39,7 @@ public class GameController {
 
         Game game = new Game();
         model.addAttribute("game", game);
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Game list");
 
         return "games/edit";

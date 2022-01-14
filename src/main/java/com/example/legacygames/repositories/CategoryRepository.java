@@ -1,4 +1,9 @@
 package com.example.legacygames.repositories;
+
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -7,7 +12,6 @@ public class CategoryRepository {
 
     public CategoryRepository() {
     }
-
 
     public List<Category> findAll() {
         return List.of(
