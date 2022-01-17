@@ -116,8 +116,9 @@ public class LegacyGamesApplicationTests {
                 )));
     }
 
-
-    void returnsBooksFromAGivenCategory() throws Exception {
+    @Test
+    @WithMockUser
+    void returnsGamesFromAGivenCategory() throws Exception {
 
         Game SportsGame = gameRepository.save(new Game("Wii Sports","Sports", 7, 19.99));
         Game RacingGame = gameRepository.save(new Game("Mario Kart, 7","Racing", 7, 19.99));
@@ -142,5 +143,21 @@ public class LegacyGamesApplicationTests {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
     }
+    @Test
+    void returnsTheExistingGames() throws Exception {
 
+        Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
+
+        mockMvc.perform(get("/games/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("games/all"))
+                .andExpect(model().attribute("games", hasItem(game)))
+                .andExpect(model().attribute("categories", hasItems(
+                        hasProperty("name", is("Sports")),
+                        hasProperty("name", is("Racing")),
+                        hasProperty("name", is("Shooter")),
+                        hasProperty("name", is("Role-playing")),
+                        hasProperty("name", is("Misc"))
+                )));
+    }
 }

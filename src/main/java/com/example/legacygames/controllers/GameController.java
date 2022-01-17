@@ -30,6 +30,7 @@ public class GameController {
         List<Game> games =  gameRepository.findAll();
         model.addAttribute("title", "Game list");
         model.addAttribute("games", games);
+        model.addAttribute("categories", categoryRepository.findAll());
         return "games/all";
     }
 
@@ -64,7 +65,12 @@ public class GameController {
         gameRepository.deleteById(id);
         return "redirect:/games";
    }
-
+    private List<Game> getGames(String category) {
+        if (category == null) {
+            return gameRepository.findAll();
+        }
+        return gameRepository.findGamesByCategoryEquals(category);
+    }
 
 }
 

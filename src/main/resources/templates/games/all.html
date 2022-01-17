@@ -32,14 +32,22 @@
         </div>
     </section> -->
 
-     <section class="card">
-
-
+     <section class="conteiner">
+         <ul class="game-filters" sec:authorize="isAuthenticated()">
+             <li><a href="/games/">All</a></li>
+             <li th:each="category: ${categories}">
+                 <a th:href="${'/games?category='+category.name}"
+                    th:text="${category.name}">
+                 </a>
+             </li>
+         </ul>
+      </section>
+    <section class="card">
          <!--<table class="table table-dark table-striped">
           <thead>
           <tr>
 
-              <!--<th scope="col">Id</th>
+              <th scope="col">Id</th>
               <th scope="col">Title</th>
               <th scope="col">Category</th>
               <th scope="col">Pegi</th>
