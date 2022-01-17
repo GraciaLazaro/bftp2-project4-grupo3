@@ -23,11 +23,8 @@ public class Game implements Serializable {
     private String coverImage;
 
 
-
-
-
-
     public Game() {
+
     }
 
     public Long getId() {
