@@ -1,5 +1,6 @@
 package com.example.legacygames.controllers;
 
+import com.example.legacygames.repositories.CategoryRepository;
 import com.example.legacygames.repositories.Game;
 import com.example.legacygames.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,29 +13,36 @@ import java.util.List;
 
 @Controller
 public class GameController {
-    private GameRepository gameRepository;
+
+    private final GameRepository gameRepository;
+    private final CategoryRepository categoryRepository;
+
 
     @Autowired
-    public GameController (GameRepository gameRepository){
+    public GameController (GameRepository gameRepository, CategoryRepository categoryRepository){
         this.gameRepository = gameRepository;
+        this.categoryRepository = categoryRepository;
+
     }
 
     @GetMapping("/games")
-    String listGames (Model model){
+    String listGames (Model model, @RequestParam(required = false) String category){
         List<Game> games =  gameRepository.findAll();
         model.addAttribute("title", "Game list");
         model.addAttribute("games", games);
         return "games/all";
     }
+
+
     @GetMapping("/games/new")
     String getForm(Model model){
 
         Game game = new Game();
-
         model.addAttribute("game", game);
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Game list");
 
-        return "new";
+        return "games/edit";
     }
 
     @PostMapping("/games/new")
