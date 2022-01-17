@@ -1,5 +1,6 @@
 package com.example.legacygames;
 
+import com.example.legacygames.repositories.CategoryRepository;
 import com.example.legacygames.repositories.Game;
 
 
@@ -98,6 +99,36 @@ public class LegacyGamesApplicationTests {
                 .andExpect(model().attribute("game", game))
                 .andExpect(model().attribute("title", "Edit game"));
     }
+    @Test
+    @WithMockUser
+    void returnsAFormToAddNewGames() throws Exception {
+        mockMvc.perform(get("/games/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("games/edit"))
+                .andExpect(model().attributeExists("game"))
+                .andExpect(model().attribute("title", "Create new game"))
+                .andExpect(model().attribute("categories", hasItems(
+                        hasProperty("name", is("Sports")),
+                        hasProperty("name", is("Racing")),
+                        hasProperty("name", is("Shooter")),
+                        hasProperty("name", is("Role-playing")),
+                        hasProperty("name", is("Misc"))
+                )));
+    }
+
+
+    void returnsBooksFromAGivenCategory() throws Exception {
+
+        Game SportsGame = gameRepository.save(new Game("Wii Sports","Sports", 7, 19.99));
+        Game RacingGame = gameRepository.save(new Game("Mario Kart, 7","Racing", 7, 19.99));
+
+        mockMvc.perform(get("/games?category=sports"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("games/all"))
+                .andExpect(model().attribute("games", hasItem(SportsGame)))
+                .andExpect(model().attribute("games", not(hasItem(RacingGame))));
+    }
+
 
     @Test
     @WithMockUser

@@ -22,8 +22,6 @@ public class Game implements Serializable {
     private double price;
     private String coverImage;
 
-
-
     public Game() {
     }
 
