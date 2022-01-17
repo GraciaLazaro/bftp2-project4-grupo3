@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head"></head>
+
+
+
+<header th:replace="fragments/header"></header>
+</head>
+<body>
+
+
+<section class="card">
+<table class="table table-dark table-striped">
+          <thead>
+          <tr>
+
+              <th scope="col">Id</th>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Pegi</th>
+              <th scope="col">Price</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+              <th scope="col"><a class="btn btn-dark btn-sm"  href="/games/new"+${game.id}>+</a></th>
+
+          </tr>
+          </thead>
+          <tbody>
+
+          <img class="card-img-top" href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.fnac.es%2Fn127491%2FPlaystation%2FVideojuegos-PS5&psig=AOvVaw1kOfos7Q_Sdo3KObpAfT84&ust=1642165522809000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPC31LrlrvUCFQAAAAAdAAAAABAD"alt="Card image cap">
+            <div class="card-body" th:each="game: ${games}">
+              <th scope="row" th:text="${game.id}"></th>
+              <td  class="list-group list-group-flush" th:text="${game.title}"></td>
+              <td th:text="${game.category}"></td>
+              <td th:text="${game.pegi}"></td>
+              <td th:text="${game.price}+'€'" ></td>
+              <td><a class="btn btn-success btn-sm" th:href="'/games/edit/'+${game.id}">Edit</a></td>
+              <td><a class="btn btn-danger btn-sm" th:href="'/games/delete/'+${game.id}">Delete</a></td>
+              <td ></td>
+
+          </div>
+          </tbody>
+      </table>
+
+</body>
+</html>
