@@ -32,7 +32,7 @@
 </section> -->
 
 <section class="container">
-    <ul class="game-filters" sec:authorize="isAuthenticated()">
+    <ul class="game-filters">
         <li><a href="/games/">All</a></li>
         <li th:each="category: ${categories}">
             <a th:href="${'/games?category='+category.name}"

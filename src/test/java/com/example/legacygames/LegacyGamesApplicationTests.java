@@ -120,14 +120,13 @@ public class LegacyGamesApplicationTests {
     @WithMockUser
     void returnsGamesFromAGivenCategory() throws Exception {
 
-        Game SportsGame = gameRepository.save(new Game("Wii Sports","Sports", 7, 19.99));
-        Game RacingGame = gameRepository.save(new Game("Mario Kart, 7","Racing", 7, 19.99));
+        Game SportsGame = gameRepository.save(new Game("Wii 3","Sports", 7, 19.99));
 
         mockMvc.perform(get("/games?category=sports"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("games/all"))
-                .andExpect(model().attribute("games", hasItem(SportsGame)))
-                .andExpect(model().attribute("games", not(hasItem(RacingGame))));
+                .andExpect(model().attribute("games", hasItem(SportsGame)));
+
     }
 
 
