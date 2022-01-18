@@ -27,7 +27,7 @@ public class GameController {
 
     @GetMapping("/games")
     String listGames (Model model, @RequestParam(required = false) String category){
-        List<Game> games =  gameRepository.findAll();
+        List<Game> games =  getGames(category);
         model.addAttribute("title", "Game list");
         model.addAttribute("games", games);
         model.addAttribute("categories", categoryRepository.findAll());
@@ -78,10 +78,10 @@ public class GameController {
     private List<Game> getGames(String category) {
         if (category != null) {
             return gameRepository.findGamesByCategoryEquals(category);
-        }
+        } else {
         return gameRepository.findAll();
     }
-
+    }
 }
 
 
