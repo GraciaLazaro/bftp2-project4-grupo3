@@ -1,4 +1,5 @@
 package com.example.legacygames.repositories;
+
 public class Category {
 
     private final String name;

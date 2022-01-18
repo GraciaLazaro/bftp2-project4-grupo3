@@ -34,7 +34,6 @@ public class GameController {
         return "games/all";
     }
 
-
     @GetMapping("/games/new")
     String getForm(Model model){
 
@@ -57,6 +56,7 @@ public class GameController {
         Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
         model.addAttribute("title", "Edit game");
+        model.addAttribute("categories", categoryRepository.findAll());
         return "games/edit";
     }
 
@@ -65,11 +65,21 @@ public class GameController {
         gameRepository.deleteById(id);
         return "redirect:/games";
    }
+
+    /*@GetMapping("/games/search")
+    String searchGames(@RequestParam String category, Model model) {
+        List<Game> games = gameRepository.findGamesByTitleContaining(category);
+        model.addAttribute("category", String.format("games containing \"%s\"", category));
+        model.addAttribute("games", games);
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "games/all";
+    }*/
+
     private List<Game> getGames(String category) {
-        if (category == null) {
-            return gameRepository.findAll();
+        if (category != null) {
+            return gameRepository.findGamesByCategoryEquals(category);
         }
-        return gameRepository.findGamesByCategoryEquals(category);
+        return gameRepository.findAll();
     }
 
 }
