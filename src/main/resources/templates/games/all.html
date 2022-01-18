@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head"></head>
 
 
@@ -74,19 +74,18 @@
      </tbody>
  </table>-->
 
-    <div class="d-inline-flex">
+    <div class="d-inline-flex" sec:authorize="isAnonymous()">
         <div th:each="game: ${games}" class="card border-0 " style="width: 18rem;">
-            <img th:src="${game.coverImage}" class="card-img-top" src="https://media.vandal.net/ivandal/1146x600/5727/200612933043_1.jpg" alt="Card image cap">
-            <div class="shadow bg-dark text-white card-body "  >
-                <h5 th:text="${game.title}" class="card-title" ></h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <img th:src="${game.coverImage}" class="card-img-top"
+                 alt="Card image cap">
+            <div class="shadow bg-dark text-white card-body ">
+                <h5 th:text="${game.title}" class="card-title"></h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
                 <h6 th:text="${game.category}"></h6>
                 <h6 th:text="${game.pegi}+'+'"></h6>
-                <h6 th:text="${game.price}+'€'" ></h6>
-                <div class="buttons" sec:authorize="isAuthenticated()">
-                    <!--<a th:href="'/games/edit/'+${game.id}" class="btn btn-success btn-sm">Edit</a>
-                    <a th:href="'/games/delete/'+${game.id}" class="btn btn-danger btn-sm">Delete</a>-->
-                </div>
+                <h6 th:text="${game.price}+'€'"></h6>
+
             </div>
         </div>
     </div>
@@ -94,45 +93,44 @@
 </section>
 
 <section>
-    <div sec:authorize=”hasRole('USER')”>
 
 
-        <table class="table table-dark table-striped">
-            <thead>
-            <tr>
+    <table class="table table-dark table-striped" sec:authorize="isAuthenticated()">
+        <thead>
+        <tr>
 
-                <th scope="col">Id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Category</th>
-                <th scope="col">Pegi</th>
-                <th scope="col">Price</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-                <th scope="col"><a class="btn btn-dark btn-sm"  href="/games/new"+${game.id}>+</a></th>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Pegi</th>
+            <th scope="col">Price</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+            <th scope="col"><a class="btn btn-dark btn-sm" href="/games/new" +${game.id}>+</a></th>
 
-            </tr>
-            </thead>
-            <tbody>
+        </tr>
+        </thead>
+        <tbody class="card-body" th:each="game: ${games}">
 
-            <img class="card-img-top" href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.fnac.es%2Fn127491%2FPlaystation%2FVideojuegos-PS5&psig=AOvVaw1kOfos7Q_Sdo3KObpAfT84&ust=1642165522809000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPC31LrlrvUCFQAAAAAdAAAAABAD"alt="Card image cap">
-            <div class="card-body" th:each="game: ${games}">
-                <th scope="row" th:text="${game.id}"></th>
-                <td  class="list-group list-group-flush" th:text="${game.title}"></td>
-                <td th:text="${game.category}"></td>
-                <td th:text="${game.pegi}"></td>
-                <td th:text="${game.price}+'€'" ></td>
-                <div class="buttons" sec:authorize="isAnonymous()">
-                    <td><a class="btn btn-success btn-sm" th:href="'/games/edit/'+${game.id}">Edit</a></td>
-                    <td><a class="btn btn-danger btn-sm" th:href="'/games/delete/'+${game.id}">Delete</a></td>
-                    <td ></td>
+        <tr>
+        <th scope="row" th:text="${game.id}"></th>
+        <td  th:text="${game.title}"></td>
+        <td  th:text="${game.category}"></td>
+        <td  th:text="${game.pegi}"></td>
+        <td  th:text="${game.price}+'€'"></td>
 
-                </div>
-            </div>
-            </tbody>
-        </table>
-        <footer th:replace="fragments/footer"></footer>
+        <td><a class="btn btn-success btn-sm"  th:href="'/games/edit/'+${game.id}">Edit</a>
+        </td>
+        <td><a class="btn btn-danger btn-sm"
+               th:href="'/games/delete/'+${game.id}">Delete</a></td>
 
-    </div>
+        </tr>
+
+        </tbody>
+    </table>
+    <footer th:replace="fragments/footer"></footer>
+
+
 </section>
-    </body>
+</body>
 </html>
