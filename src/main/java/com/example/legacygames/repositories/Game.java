@@ -22,7 +22,9 @@ public class Game implements Serializable {
     private double price;
     private String coverImage;
 
+
     public Game() {
+
     }
 
     public Long getId() {
@@ -95,7 +97,7 @@ public class Game implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title)  && Objects.equals(coverImage, game.coverImage);
+        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title)&& Objects.equals(category, game.category)  && Objects.equals(coverImage, game.coverImage);
     }
 
     @Override

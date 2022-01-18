@@ -30,6 +30,7 @@ public class GameController {
         List<Game> games =  gameRepository.findAll();
         model.addAttribute("title", "Game list");
         model.addAttribute("games", games);
+        model.addAttribute("categories", categoryRepository.findAll());
         return "games/all";
     }
 
@@ -52,7 +53,7 @@ public class GameController {
     }
 
     @GetMapping("/games/edit/{id}")
-    String editBook(Model model, @PathVariable Long id){
+    String editGame (Model model, @PathVariable Long id){
         Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
         model.addAttribute("title", "Edit game");
@@ -64,7 +65,12 @@ public class GameController {
         gameRepository.deleteById(id);
         return "redirect:/games";
    }
-
+    private List<Game> getGames(String category) {
+        if (category == null) {
+            return gameRepository.findAll();
+        }
+        return gameRepository.findGamesByCategoryEquals(category);
+    }
 
 }
 
