@@ -3,6 +3,7 @@ package com.example.legacygames.controllers;
 import com.example.legacygames.repositories.CategoryRepository;
 import com.example.legacygames.repositories.Game;
 import com.example.legacygames.repositories.GameRepository;
+import com.example.legacygames.repositories.PegiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,21 +17,22 @@ public class GameController {
 
     private final GameRepository gameRepository;
     private final CategoryRepository categoryRepository;
+    private final PegiRepository pegiRepository;
 
 
     @Autowired
-    public GameController (GameRepository gameRepository, CategoryRepository categoryRepository){
+    public GameController (GameRepository gameRepository, CategoryRepository categoryRepository, PegiRepository pegiRepository){
         this.gameRepository = gameRepository;
         this.categoryRepository = categoryRepository;
-
+        this.pegiRepository = pegiRepository;
     }
 
     @GetMapping("/games")
-    String listGames (Model model, @RequestParam(required = false) String category){
-        List<Game> games =  getGames(category);
+    String listGames (Model model, @RequestParam(required = false) String category,  @RequestParam(required = false) String pegi){
         model.addAttribute("title", "Game list");
-        model.addAttribute("games", games);
+        model.addAttribute("games", getGames (category, pegi));
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("pegies", pegiRepository.findAll());
         return "games/all";
     }
 
@@ -41,7 +43,6 @@ public class GameController {
         model.addAttribute("game", game);
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Game list");
-
         return "games/edit";
     }
 
@@ -75,13 +76,16 @@ public class GameController {
         return "games/all";
     }*/
 
-    private List<Game> getGames(String category) {
+    private List<Game> getGames(String category, String pegi) {
         if (category != null) {
-            return gameRepository.findGamesByCategoryEquals(category);
-        } else {
+                return gameRepository.findGamesByCategoryEquals(category);
+        }
+        if(pegi != null) {
+                return gameRepository.findGamesByPegiEquals(pegi);
+        }
         return gameRepository.findAll();
     }
-    }
+
 }
 
 

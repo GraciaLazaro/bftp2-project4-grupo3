@@ -18,7 +18,7 @@ public class Game implements Serializable {
     private Long id;
     private String title;
     private String category;
-    private int pegi;
+    private String pegi;
     private double price;
     private String coverImage;
 
@@ -59,13 +59,8 @@ public class Game implements Serializable {
         this.coverImage = coverImage;
     }
 
-    public int getPegi() {
-        return pegi;
-    }
-
-    public void setPegi(int pegi) {
-        this.pegi = pegi;
-    }
+    public String getPegi() {return pegi;}
+    public void setPegi(String pegi) {this.pegi = pegi;}
 
     public double getPrice() {
         return price;
@@ -75,7 +70,7 @@ public class Game implements Serializable {
         this.price = price;
     }
 
-    public Game( String title, String category,int pegi, double price) {
+    public Game( String title, String category,String pegi, double price) {
         this.title = title;
         this.category = category;
         this.pegi = pegi;

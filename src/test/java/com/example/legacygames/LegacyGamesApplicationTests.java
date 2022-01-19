@@ -70,7 +70,7 @@ public class LegacyGamesApplicationTests {
         assertThat(existingGames, contains(allOf(
                 hasProperty("title", equalTo("Wii Sports")),
                 hasProperty("category", equalTo("Sports")),
-                hasProperty("pegi", equalTo(7)),
+                hasProperty("pegi", equalTo("7")),
                 hasProperty("price", equalTo(19.99))
         )));
     }
@@ -79,7 +79,7 @@ public class LegacyGamesApplicationTests {
     @Test
     @WithMockUser
     void allowsToDeleteAGame() throws Exception {
-        Game game = gameRepository.save(new Game("sims", "Sports", 7, 19.99));
+        Game game = gameRepository.save(new Game("sims", "Sports", "7", 19.99));
         mockMvc.perform(get("/games/delete/" + game.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/games"));
@@ -92,7 +92,7 @@ public class LegacyGamesApplicationTests {
     @Test
     @WithMockUser
     void allowsToEditAnyGame () throws Exception {
-        Game game = gameRepository.save(new Game("Wii sports", "Sports", 7, 19.99));
+        Game game = gameRepository.save(new Game("Wii sports", "Sports", "7", 19.99));
         mockMvc.perform(get("/games/edit/" + game.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("games/edit"))
@@ -120,7 +120,7 @@ public class LegacyGamesApplicationTests {
     @WithMockUser
     void returnsGamesFromAGivenCategory() throws Exception {
 
-        Game SportsGame = gameRepository.save(new Game("Wii 3","Sports", 7, 19.99));
+        Game SportsGame = gameRepository.save(new Game("Wii 3","Sports", "7", 19.99));
 
         mockMvc.perform(get("/games?category=sports"))
                 .andExpect(status().isOk())
@@ -145,7 +145,7 @@ public class LegacyGamesApplicationTests {
     @Test
     void returnsTheExistingGames() throws Exception {
 
-        Game game = gameRepository.save(new Game("Wii Sports", "Sports", 7, 19.99));
+        Game game = gameRepository.save(new Game("Wii Sports", "Sports", "7", 19.99));
 
         mockMvc.perform(get("/games/"))
                 .andExpect(status().isOk())
