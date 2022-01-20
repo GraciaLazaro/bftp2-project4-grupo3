@@ -1,6 +1,5 @@
 package com.example.legacygames.repositories;
 
-public class Pegi {
     public class Pegi{
 
         private final String name;
@@ -14,4 +13,4 @@ public class Pegi {
         }
     }
 
-}
+

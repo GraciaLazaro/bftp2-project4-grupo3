@@ -87,22 +87,17 @@ public class Game implements Serializable {
                 ", price=" + price + "€" +
                 '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return pegi == game.pegi && Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title)&& Objects.equals(category, game.category)  && Objects.equals(coverImage, game.coverImage);
+        return Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category) && Objects.equals(pegi, game.pegi) && Objects.equals(coverImage, game.coverImage);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, title, category, pegi, price, coverImage);
     }
-
-
-
-
-
-
 }
