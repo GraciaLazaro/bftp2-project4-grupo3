@@ -45,7 +45,7 @@
     <ul class="game-filters">
         <li><a href="/games/">All</a></li>
         <li th:each="pegi: ${pegies}">
-            <a th:href="${'/games?category='+pegi.name}"
+            <a th:href="${'/games?pegi='+pegi.name}"
                th:text="${pegi.name}">
             </a>
         </li>
