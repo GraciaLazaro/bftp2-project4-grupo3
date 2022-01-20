@@ -20,9 +20,9 @@
                             Eligir por categoria
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><a href="/games/">All</a></li>
+                            <li><a class="dropdown-item" href="/games/">All</a></li>
                             <li th:each="category: ${categories}">
-                                <a th:href="${'/games?category='+category.name}"
+                                <a class="dropdown-item" th:href="${'/games?category='+category.name}"
                                    th:text="${category.name}">
                                 </a>
                             </li>
@@ -35,9 +35,9 @@
                             Eligir por PEGI
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                            <li><a href="/games/">All</a></li>
+                            <li><a class="dropdown-item" href="/games/">All</a></li>
                             <li th:each="pegi: ${pegies}">
-                                <a th:href="${'/games?pegi='+pegi.name}"
+                                <a class="dropdown-item" th:href="${'/games?pegi='+pegi.name}"
                                    th:text="${pegi.name}">
                                 </a>
                             </li>
