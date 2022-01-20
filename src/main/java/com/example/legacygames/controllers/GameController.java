@@ -30,6 +30,7 @@ public class GameController {
     @GetMapping("/games")
     String listGames (Model model, @RequestParam(required = false) String category,  @RequestParam(required = false) String pegi){
         model.addAttribute("title", "Game list");
+        model.addAttribute("image", "image");
         model.addAttribute("games", getGames (category, pegi));
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("pegies", pegiRepository.findAll());
@@ -43,6 +44,8 @@ public class GameController {
         model.addAttribute("game", game);
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Game list");
+
+
         return "games/edit";
     }
 
@@ -56,7 +59,7 @@ public class GameController {
     String editGame (Model model, @PathVariable Long id){
         Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
-        model.addAttribute("title", "Edit game");
+        model.addAttribute("image", "image");
         model.addAttribute("categories", categoryRepository.findAll());
         return "games/edit";
     }

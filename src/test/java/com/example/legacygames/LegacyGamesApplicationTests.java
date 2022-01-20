@@ -79,7 +79,7 @@ public class LegacyGamesApplicationTests {
     @Test
     @WithMockUser
     void allowsToDeleteAGame() throws Exception {
-        Game game = gameRepository.save(new Game("sims", "Sports", "7", 19.99));
+        Game game = gameRepository.save(new Game("sims", "Sports", "7", 19.99, image:"../img/wiisports.png"));
         mockMvc.perform(get("/games/delete/" + game.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/games"));
