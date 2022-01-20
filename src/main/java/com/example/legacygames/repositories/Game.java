@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-import static javax.persistence.GenerationType.SEQUENCE;
+
+
 
 
 @Entity
@@ -21,6 +22,7 @@ public class Game implements Serializable {
     private String pegi;
     private double price;
     private String coverImage;
+    private String image;
 
 
     public Game() {
@@ -70,11 +72,29 @@ public class Game implements Serializable {
         this.price = price;
     }
 
-    public Game( String title, String category,String pegi, double price) {
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
+
+
+
+
+
+    public Game( String title, String category,String pegi, double price, String image) {
         this.title = title;
         this.category = category;
         this.pegi = pegi;
         this.price = price;
+        this.image = image;
+
     }
 
     @Override
@@ -85,6 +105,7 @@ public class Game implements Serializable {
                 ", category='" + category + '\'' +
                 ", pegi=" + pegi +
                 ", price=" + price + "€" +
+                ", image=" + image +
                 '}';
     }
 
@@ -93,11 +114,11 @@ public class Game implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category) && Objects.equals(pegi, game.pegi) && Objects.equals(coverImage, game.coverImage);
+        return Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category) && Objects.equals(pegi, game.pegi) && Objects.equals(coverImage, game.coverImage) && Objects.equals(image, game.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, category, pegi, price, coverImage);
+        return Objects.hash(id, title, category, pegi, price, coverImage, image);
     }
 }
