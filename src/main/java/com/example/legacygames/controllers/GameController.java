@@ -34,6 +34,7 @@ public class GameController {
         model.addAttribute("games", getGames (category, pegi));
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("pegies", pegiRepository.findAll());
+        model.addAttribute("info", "info");
         return "games/all";
     }
 
@@ -45,6 +46,7 @@ public class GameController {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Game list");
         model.addAttribute("image", "image");
+        model.addAttribute("info", "info");
 
 
         return "games/edit";
@@ -61,6 +63,7 @@ public class GameController {
         Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
         model.addAttribute("image", "image");
+        model.addAttribute("info", "info");
         model.addAttribute("categories", categoryRepository.findAll());
         return "games/edit";
     }

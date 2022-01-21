@@ -6,8 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-
-
+import static java.awt.SystemColor.info;
 
 
 @Entity
@@ -23,6 +22,7 @@ public class Game implements Serializable {
     private double price;
     private String coverImage;
     private String image;
+    private String info;
 
 
     public Game() {
@@ -82,18 +82,27 @@ public class Game implements Serializable {
         this.image = image;
     }
 
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
 
 
 
 
 
-    public Game( String title, String category,String pegi, double price, String image) {
+
+    public Game( String title, String category,String pegi, double price, String image, String info) {
         this.title = title;
         this.category = category;
         this.pegi = pegi;
         this.price = price;
         this.image = image;
+        this.info = info;
 
     }
 
@@ -106,6 +115,7 @@ public class Game implements Serializable {
                 ", pegi=" + pegi +
                 ", price=" + price + "€" +
                 ", image=" + image +
+                ", info=" + info +
                 '}';
     }
 
@@ -114,11 +124,11 @@ public class Game implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category) && Objects.equals(pegi, game.pegi) && Objects.equals(coverImage, game.coverImage) && Objects.equals(image, game.image);
+        return Double.compare(game.price, price) == 0 && Objects.equals(id, game.id) && Objects.equals(title, game.title) && Objects.equals(category, game.category) && Objects.equals(pegi, game.pegi) && Objects.equals(coverImage, game.coverImage) && Objects.equals(image, game.image)&& Objects.equals(info, game.info);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, category, pegi, price, coverImage, image);
+        return Objects.hash(id, title, category, pegi, price, coverImage, image, info);
     }
 }

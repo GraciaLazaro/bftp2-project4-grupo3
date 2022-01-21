@@ -45,8 +45,8 @@
                  alt="Card image cap">
             <div class="shadow bg-dark text-white card-body ">
                 <h5 th:text="${game.title}" class="card-title"></h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                <h6 th:text="${game.info}"></h6>
+
                 <h6 th:text="${game.category}"></h6>
                 <h6 th:text="${game.pegi}+'+'"></h6>
                 <h6 th:text="${game.price}+'€'"></h6>
