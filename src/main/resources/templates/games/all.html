@@ -40,7 +40,7 @@
 <section class="card">
 
     <div class="d-inline-flex" sec:authorize="isAnonymous()">
-        <div th:each="game: ${games}" class="card border-0 " style="width: 18rem;">
+        <div th:each="game: ${games}" class="card border-0 " style="margin: 20px">
             <img th:src="${game.image}" class="card-img-top"
                  alt="Card image cap">
             <div class="shadow bg-dark text-white card-body ">
